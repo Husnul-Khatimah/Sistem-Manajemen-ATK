@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SiManis Riwayar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="Data Survai.css" />
+
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+            <div class="profile" id="profile">
+            <div class="profile-img"></div>
+            <div>Username</div>
+        </div>
+        <div class="menu">
+            <a href="Home Admin .html" class="menu-item  active"><i class="fas fa-home"></i> <span>HOME</span></a>
+            <a href="DataATK.html" class="menu-item "><i class="fas fa-box"></i> <span>Data Barang</span></a>
+            <a href="Permintaan.html" class="menu-item"><i class="fas fa-file-alt"></i>  <span>Permintaan</span></a>
+            <a href="PesanATK (2).html" class="menu-item"><i class="fas fa-cart-plus"></i> <span>Pesan ATK</span></a>
+            <a href="Pengguna.html" class="menu-item"><i class="fas fa-user"></i><span>Pengguna</span></a>
+            <a href="#" class="menu-item"><i class="fas fa-clipboard-list"></i> <span>Data Survai</span></a>
+            <a href="#" id="logout-btn" class="menu-item"><i class="fas fa-sign-out-alt"></i> <span>Log out</span></a>
+        </div>
+
+        <div id="logout-popup">
+        <div class="popup-content">
+            <p>Apakah Anda yakin ingin logout?</p>
+            <a href="#" class="confirm-logout" id="confirm-logout">Logout</a>
+            <button class="cancel-logout" id="cancel-logout">Batal</button>
+        </div>
+        </div>
+    </div>
+    <div class="main-content" id="main-content">
+         <div class="header">
+            <div class="brand">SiManis</div>
+            <button class="toggle-btn" id="toggle-btn"><i class="fas fa-bars"></i></button>
+            Permintaan
+       </div>
+        <h1>Data ATK</h1>
+
+        
+        <div class="dashboard-box">
+
+            <table>
+                <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>NIP</th>
+                    <th>Nama Barang</th>
+                    <th>Jumlah</th>
+                    <th>Tanggal </th> 
+                    <th>Keterangan </th> 
+                    <th>Status </th> 
+                    <th>Aksi</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>adri</td>
+                    <td>123456</td>
+                    <td>Kertas A4</td>
+                    <td>2 Rim</td>
+                    <td>2025-05-06</td>
+                    <td>haii semua</td>
+                    <td>proses</td>
+                    <td><button class="btn-view">Setujui</button>
+                    <button class="btn-view1">Tolak</button></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>adri</td>
+                    <td>123456</td>
+                    <td>Kertas A4</td>
+                    <td>2 Rim</td>
+                    <td>2025-05-06</td>
+                    <td>haii semua</td>
+                    <td>proses</td>
+                    <td><button class="btn-view">Setujui</button>
+                    <button class="btn-view1">Tolak</button></td>
+                </tr>
+                    <tr>
+                    <td>3</td>
+                    <td>adri</td>
+                    <td>123456</td>
+                    <td>Kertas A4</td>
+                    <td>2 Rim</td>
+                    <td>2025-05-06</td>
+                    <td>haii semua</td>
+                    <td>proses</td>
+                    <td><button class="btn-view">Setujui</button>
+                    <button class="btn-view1">Tolak</button></td>
+                </tr>
+                </tr>
+                    <tr>
+                    <td>4</td>
+                    <td>adri</td>
+                    <td>123456</td>
+                    <td>Kertas A4</td>
+                    <td>2 Rim</td>
+                    <td>2025-05-06</td>
+                    <td>haii semua</td>
+                    <td>proses</td>
+                    <td><button class="btn-view">Setujui</button>
+                    <button class="btn-view1">Tolak</button></td>
+                </tr>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const toggleBtn = document.getElementById("toggle-btn");
+            const sidebar = document.getElementById("sidebar");
+            const mainContent = document.getElementById("main-content");
+            const profile = document.getElementById("profile");
+
+            // Fungsi collapse otomatis saat layar kecil
+            function autoCollapseSidebar() {
+            if (window.innerWidth <= 768) {
+                sidebar.classList.add("collapsed");
+                mainContent.classList.add("expanded");
+                profile.classList.add("collapsed");
+            } else {
+                const isCollapsed = localStorage.getItem("sidebarCollapsed") === "true";
+                if (!isCollapsed) {
+                sidebar.classList.remove("collapsed");
+                mainContent.classList.remove("expanded");
+                profile.classList.remove("collapsed");
+                }
+            }
+            }
+
+            // Jalankan saat awal dan resize
+            autoCollapseSidebar();
+            window.addEventListener("resize", autoCollapseSidebar);
+
+            // Cek localStorage
+            const isCollapsed = localStorage.getItem("sidebarCollapsed") === "true";
+            if (isCollapsed && window.innerWidth > 768) {
+            sidebar.classList.add("collapsed");
+            mainContent.classList.add("expanded");
+            profile.classList.add("collapsed");
+            }
+
+            // Toggle sidebar manual
+            toggleBtn.addEventListener("click", () => {
+            const collapsedNow = sidebar.classList.toggle("collapsed");
+            mainContent.classList.toggle("expanded");
+            profile.classList.toggle("collapsed");
+            localStorage.setItem("sidebarCollapsed", collapsedNow);
+            });
+        });
+
+        const logoutBtn = document.getElementById('logout-btn');
+        const logoutPopup = document.getElementById('logout-popup');
+        const confirmLogout = document.getElementById('confirm-logout');
+        const cancelLogout = document.getElementById('cancel-logout');
+
+        logoutBtn.addEventListener('click', function(e) {
+            e.preventDefault();      // supaya tidak langsung ke href
+            logoutPopup.style.display = 'flex'; // tampilkan popup
+        });
+
+        cancelLogout.addEventListener('click', function() {
+            logoutPopup.style.display = 'none'; // sembunyikan popup jika batal
+        });
+
+        confirmLogout.addEventListener('click', function() {
+            window.location.href = 'logout.html'; // arahkan logout saat konfirmasi
+        });
+
+    </script>
+</body>
+</html>
